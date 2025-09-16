@@ -134,7 +134,7 @@ export const initialContactInfo: ContactInfo = {
     linkedin: "https://www.linkedin.com/company/virtuserve-sl/",
     instagram: "https://www.instagram.com/virtu.serve?igsh=MW4xaWpyZXlpYzN0cw==",
     facebook: "https://www.facebook.com/share/1B9qPzn9vD/?mibextid=wwXIfr",
-    whatsapp: "https://wa.me/0094727887300",
+    whatsapp: "https://wa.me/+94727887300",
     tiktok: "https://www.tiktok.com/@virtu.serve?_t=ZS-8wEfuX0IEKe&_r=1",
     email: "mailto:servevirtu@gmail.com"
   }
