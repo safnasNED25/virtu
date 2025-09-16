@@ -445,73 +445,157 @@ export default function Website({ services, contactInfo, testimonials, onVisit }
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div className="text-center p-8 bg-blue-50 rounded-2xl">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
+            <div className="text-center p-8 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-blue-100">
               <div className="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Phone className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Phone</h3>
-              <div className="space-y-3">
-                <p className="text-gray-600">{contactInfo.phone}</p>
-                {/* <div className="flex flex-col space-y-2"> */}
-                <div className="space-y-3 space-x-1">
+              <div className="space-y-4">
+                <p className="text-gray-700 font-medium text-lg">{contactInfo.phone}</p>
+                <p className="text-sm text-gray-600 mb-4">Available 24/7 for urgent matters</p>
+                <div className="flex flex-col space-y-3">
                   <button
                     onClick={() => window.open(`tel:${contactInfo.phone}`, '_self')}
-                    className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm"
+                    className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-all duration-300 text-sm font-semibold shadow-md hover:shadow-lg transform hover:scale-105 flex items-center justify-center space-x-2"
                   >
-                    Normal Call
+                    <Phone className="w-4 h-4" />
+                    <span>Call Now</span>
                   </button>
                   <button
                     onClick={() => window.open(contactInfo.socialMedia.whatsapp, '_blank')}
-                    className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors text-sm"
+                    className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-all duration-300 text-sm font-semibold shadow-md hover:shadow-lg transform hover:scale-105 flex items-center justify-center space-x-2"
                   >
-                    WhatsApp Call
+                    <WhatsAppIcon className="w-4 h-4" />
+                    <span>WhatsApp</span>
                   </button>
                 </div>
               </div>
             </div>
 
-            <div className="text-center p-8 bg-blue-50 rounded-2xl">
+            <div className="text-center p-8 bg-gradient-to-br from-green-50 to-green-100 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-green-100">
               <div className="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Mail className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Email</h3>
-              <div className="space-y-3">
-                <p className="text-gray-600">{contactInfo.email}</p>
-                <button
-                  onClick={() => window.open(`mailto:${contactInfo.email}`, '_self')}
-                  className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm"
-                >
-                  📧 Send Email
-                </button>
+              <div className="space-y-4">
+                <p className="text-gray-700 font-medium text-lg break-all">{contactInfo.email}</p>
+                <p className="text-sm text-gray-600 mb-4">We respond within 24 hours</p>
+                <div className="space-y-3">
+                  <button
+                    onClick={() => window.open(`mailto:${contactInfo.email}`, '_self')}
+                    className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-all duration-300 text-sm font-semibold shadow-md hover:shadow-lg transform hover:scale-105 flex items-center justify-center space-x-2"
+                  >
+                    <Mail className="w-4 h-4" />
+                    <span>Send Email</span>
+                  </button>
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText(contactInfo.email);
+                      // You could add a toast notification here
+                    }}
+                    className="w-full bg-gray-600 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-all duration-300 text-sm font-semibold shadow-md hover:shadow-lg transform hover:scale-105 flex items-center justify-center space-x-2"
+                  >
+                    <Copy className="w-4 h-4" />
+                    <span>Copy Email</span>
+                  </button>
+                </div>
               </div>
             </div>
 
-            <div className="text-center p-8 bg-blue-50 rounded-2xl">
+            <div className="text-center p-8 bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-purple-100">
               <div className="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                 <MapPin className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Office</h3>
-              <p className="text-gray-600 whitespace-pre-line">
-                {contactInfo.address}
-              </p>
+              <div className="space-y-4">
+                <p className="text-gray-700 font-medium text-lg whitespace-pre-line">
+                  {contactInfo.address}
+                </p>
+                <p className="text-sm text-gray-600 mb-4">Remote operations worldwide</p>
+                <button
+                  onClick={() => window.open('https://www.google.com/maps', '_blank')}
+                  className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-all duration-300 text-sm font-semibold shadow-md hover:shadow-lg transform hover:scale-105 flex items-center justify-center space-x-2"
+                >
+                  <Globe className="w-4 h-4" />
+                  <span>View Coverage</span>
+                </button>
+              </div>
             </div>
           </div>
 
-          <div className="text-center mt-12">
-            <div className="bg-gradient-to-r from-blue-50 to-blue-100 p-8 rounded-2xl max-w-2xl mx-auto">
-              <div className="mb-6">
-                <img 
-                  src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop" 
-                  alt="Professional office environment" 
-                  className="w-full h-32 object-cover rounded-lg"
-                />
+          {/* Enhanced Business Hours Section */}
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-gradient-to-r from-blue-50 via-white to-blue-50 p-8 rounded-2xl shadow-lg border border-blue-100">
+              <div className="text-center mb-8">
+                <div className="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Clock className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Business Hours</h3>
+                <p className="text-gray-600">We're here when you need us most</p>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Business Hours</h3>
-              <div className="text-gray-700 space-y-2">
-                <p><strong>Monday - Friday:</strong> {contactInfo.businessHours.weekdays}</p>
-                <p><strong>Saturday:</strong> {contactInfo.businessHours.saturday}</p>
-                <p><strong>Sunday:</strong> {contactInfo.businessHours.sunday}</p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div className="text-center p-6 bg-white rounded-xl shadow-md border border-gray-100">
+                  <div className="bg-green-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Clock className="w-6 h-6 text-green-600" />
+                  </div>
+                  <h4 className="font-bold text-gray-900 mb-2">Weekdays</h4>
+                  <p className="text-gray-700 font-medium">{contactInfo.businessHours.weekdays}</p>
+                  <p className="text-sm text-green-600 mt-1">Most Active</p>
+                </div>
+                
+                <div className="text-center p-6 bg-white rounded-xl shadow-md border border-gray-100">
+                  <div className="bg-yellow-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Clock className="w-6 h-6 text-yellow-600" />
+                  </div>
+                  <h4 className="font-bold text-gray-900 mb-2">Saturday</h4>
+                  <p className="text-gray-700 font-medium">{contactInfo.businessHours.saturday}</p>
+                  <p className="text-sm text-yellow-600 mt-1">Limited Hours</p>
+                </div>
+                
+                <div className="text-center p-6 bg-white rounded-xl shadow-md border border-gray-100">
+                  <div className="bg-red-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Clock className="w-6 h-6 text-red-600" />
+                  </div>
+                  <h4 className="font-bold text-gray-900 mb-2">Sunday</h4>
+                  <p className="text-gray-700 font-medium">{contactInfo.businessHours.sunday}</p>
+                  <p className="text-sm text-red-600 mt-1">Rest Day</p>
+                </div>
+              </div>
+              
+              <div className="text-center">
+                <div className="bg-blue-100 p-4 rounded-lg inline-block">
+                  <p className="text-blue-800 font-medium">
+                    <strong>Emergency Support:</strong> Available 24/7 via WhatsApp for urgent matters
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Call-to-Action Section */}
+          <div className="text-center mt-16">
+            <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-8 rounded-2xl shadow-xl max-w-3xl mx-auto text-white">
+              <h3 className="text-2xl font-bold mb-4">Ready to Get Started?</h3>
+              <p className="text-blue-100 mb-6 text-lg">
+                Join hundreds of satisfied clients who trust us with their business operations
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button
+                  onClick={() => window.open(contactInfo.socialMedia.whatsapp, '_blank')}
+                  className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center space-x-2"
+                >
+                  <WhatsAppIcon className="w-5 h-5" />
+                  <span>Start WhatsApp Chat</span>
+                </button>
+                <button
+                  onClick={() => window.open(`mailto:${contactInfo.email}?subject=Project Inquiry&body=Hello, I'm interested in your services...`, '_self')}
+                  className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2"
+                >
+                  <Mail className="w-5 h-5" />
+                  <span>Send Project Brief</span>
+                </button>
               </div>
             </div>
           </div>
