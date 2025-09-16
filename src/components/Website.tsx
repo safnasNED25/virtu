@@ -445,84 +445,7 @@ export default function Website({ services, contactInfo, testimonials, onVisit }
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
-            <div className="text-center p-8 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-blue-100">
-              <div className="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Phone className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Phone</h3>
-              <div className="space-y-4">
-                <p className="text-gray-700 font-medium text-lg">{contactInfo.phone}</p>
-                <p className="text-sm text-gray-600 mb-4">Available 24/7 for urgent matters</p>
-                <div className="flex flex-col space-y-3">
-                  <button
-                    onClick={() => window.open(`tel:${contactInfo.phone}`, '_self')}
-                    className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-all duration-300 text-sm font-semibold shadow-md hover:shadow-lg transform hover:scale-105 flex items-center justify-center space-x-2"
-                  >
-                    <Phone className="w-4 h-4" />
-                    <span>Call Now</span>
-                  </button>
-                  <button
-                    onClick={() => window.open(contactInfo.socialMedia.whatsapp, '_blank')}
-                    className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-all duration-300 text-sm font-semibold shadow-md hover:shadow-lg transform hover:scale-105 flex items-center justify-center space-x-2"
-                  >
-                    <WhatsAppIcon className="w-4 h-4" />
-                    <span>WhatsApp</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <div className="text-center p-8 bg-gradient-to-br from-green-50 to-green-100 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-green-100">
-              <div className="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Mail className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Email</h3>
-              <div className="space-y-4">
-                <p className="text-gray-700 font-medium text-lg break-all">{contactInfo.email}</p>
-                <p className="text-sm text-gray-600 mb-4">We respond within 24 hours</p>
-                <div className="space-y-3">
-                  <button
-                    onClick={() => window.open(`mailto:${contactInfo.email}`, '_self')}
-                    className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-all duration-300 text-sm font-semibold shadow-md hover:shadow-lg transform hover:scale-105 flex items-center justify-center space-x-2"
-                  >
-                    <Mail className="w-4 h-4" />
-                    <span>Send Email</span>
-                  </button>
-                  <button
-                    onClick={() => {
-                      navigator.clipboard.writeText(contactInfo.email);
-                      // You could add a toast notification here
-                    }}
-                    className="w-full bg-gray-600 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-all duration-300 text-sm font-semibold shadow-md hover:shadow-lg transform hover:scale-105 flex items-center justify-center space-x-2"
-                  >
-                    <Copy className="w-4 h-4" />
-                    <span>Copy Email</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <div className="text-center p-8 bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-purple-100">
-              <div className="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <MapPin className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Office</h3>
-              <div className="space-y-4">
-                <p className="text-gray-700 font-medium text-lg whitespace-pre-line">
-                  {contactInfo.address}
-                </p>
-                <p className="text-sm text-gray-600 mb-4">Remote operations worldwide</p>
-                <button
-                  onClick={() => window.open('https://www.google.com/maps', '_blank')}
-                  className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-all duration-300 text-sm font-semibold shadow-md hover:shadow-lg transform hover:scale-105 flex items-center justify-center space-x-2"
-                >
-                  <Globe className="w-4 h-4" />
-                  <span>View Coverage</span>
-                </button>
-              </div>
-            </div>
-          </div>
+          <ContactCards contactInfo={contactInfo} />
 
           {/* Enhanced Business Hours Section */}
           <div className="max-w-4xl mx-auto">
@@ -700,5 +623,122 @@ export default function Website({ services, contactInfo, testimonials, onVisit }
         </div>
       </footer>
     </div>
+  );
+}
+
+// Contact Cards Component
+function ContactCards({ contactInfo }: { contactInfo: ContactInfo }) {
+  const [showPhoneOptions, setShowPhoneOptions] = useState(false);
+
+  const handlePhoneClick = () => {
+    setShowPhoneOptions(true);
+  };
+
+  const handleEmailClick = () => {
+    window.open(`mailto:${contactInfo.email}`, '_self');
+  };
+
+  const handleNormalCall = () => {
+    window.open(`tel:${contactInfo.phone}`, '_self');
+    setShowPhoneOptions(false);
+  };
+
+  const handleWhatsAppCall = () => {
+    window.open(contactInfo.socialMedia.whatsapp, '_blank');
+    setShowPhoneOptions(false);
+  };
+
+  const closePhoneOptions = () => {
+    setShowPhoneOptions(false);
+  };
+
+  return (
+    <>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
+        {/* Phone Container */}
+        <div 
+          className="text-center p-8 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-blue-100 cursor-pointer group"
+          onClick={handlePhoneClick}
+        >
+          <div className="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+            <Phone className="w-8 h-8 text-white" />
+          </div>
+          <h3 className="text-xl font-bold text-gray-900 mb-2">Phone</h3>
+          <p className="text-gray-700 font-medium text-lg">{contactInfo.phone}</p>
+          <p className="text-sm text-gray-600 mt-2">Available 24/7 for urgent matters</p>
+          <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <p className="text-sm text-blue-600 font-medium">Click to call</p>
+          </div>
+        </div>
+
+        {/* Email Container */}
+        <div 
+          className="text-center p-8 bg-gradient-to-br from-green-50 to-green-100 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-green-100 cursor-pointer group"
+          onClick={handleEmailClick}
+        >
+          <div className="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+            <Mail className="w-8 h-8 text-white" />
+          </div>
+          <h3 className="text-xl font-bold text-gray-900 mb-2">Email</h3>
+          <p className="text-gray-700 font-medium text-lg break-all">{contactInfo.email}</p>
+          <p className="text-sm text-gray-600 mt-2">We respond within 24 hours</p>
+          <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <p className="text-sm text-green-600 font-medium">Click to send email</p>
+          </div>
+        </div>
+
+        {/* Office Container */}
+        <div className="text-center p-8 bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-purple-100 group">
+          <div className="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+            <MapPin className="w-8 h-8 text-white" />
+          </div>
+          <h3 className="text-xl font-bold text-gray-900 mb-2">Office</h3>
+          <p className="text-gray-700 font-medium text-lg whitespace-pre-line">
+            {contactInfo.address}
+          </p>
+          <p className="text-sm text-gray-600 mt-2">Remote operations worldwide</p>
+        </div>
+      </div>
+
+      {/* Phone Options Modal */}
+      {showPhoneOptions && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl p-8 max-w-md w-full shadow-2xl transform transition-all duration-300 scale-100">
+            <div className="text-center mb-6">
+              <div className="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Phone className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">Choose Call Method</h3>
+              <p className="text-gray-600">How would you like to contact us?</p>
+            </div>
+
+            <div className="space-y-4">
+              <button
+                onClick={handleNormalCall}
+                className="w-full bg-blue-600 text-white px-6 py-4 rounded-xl hover:bg-blue-700 transition-all duration-300 text-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center justify-center space-x-3"
+              >
+                <Phone className="w-6 h-6" />
+                <span>Normal Call</span>
+              </button>
+              
+              <button
+                onClick={handleWhatsAppCall}
+                className="w-full bg-green-600 text-white px-6 py-4 rounded-xl hover:bg-green-700 transition-all duration-300 text-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center justify-center space-x-3"
+              >
+                <WhatsAppIcon className="w-6 h-6" />
+                <span>WhatsApp Call</span>
+              </button>
+
+              <button
+                onClick={closePhoneOptions}
+                className="w-full bg-gray-200 text-gray-700 px-6 py-4 rounded-xl hover:bg-gray-300 transition-all duration-300 text-lg font-semibold"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
