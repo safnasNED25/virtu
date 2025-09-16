@@ -109,7 +109,7 @@ export default function Website({ services, contactInfo, testimonials, onVisit }
               <img 
                 src="/logo.png" 
                 alt="Virtu Serve Logo" 
-                className="w-10 h-10 object-contain"
+                className="w-12 h-12 object-contain"
                 onError={(e) => {
                   console.error('Logo failed to load');
                   e.currentTarget.style.display = 'none';
