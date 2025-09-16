@@ -106,7 +106,17 @@ export default function Website({ services, contactInfo, testimonials, onVisit }
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
+              <img 
+                src="/logo.png" 
+                alt="Virtu Serve Logo" 
+                className="w-10 h-10 object-contain"
+                onError={(e) => {
+                  console.error('Logo failed to load');
+                  e.currentTarget.style.display = 'none';
+                  e.currentTarget.nextElementSibling.style.display = 'flex';
+                }}
+              />
+              <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm" style={{display: 'none'}}>
                 VS
               </div>
               <div>
@@ -514,7 +524,17 @@ export default function Website({ services, contactInfo, testimonials, onVisit }
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="md:col-span-2">
               <div className="flex items-center space-x-3 mb-4">
-                <div className="w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                <img 
+                  src="/logo.png" 
+                  alt="Virtu Serve Logo" 
+                  className="w-14 h-14 object-contain"
+                  onError={(e) => {
+                    console.error('Footer logo failed to load');
+                    e.currentTarget.style.display = 'none';
+                    e.currentTarget.nextElementSibling.style.display = 'flex';
+                  }}
+                />
+                <div className="w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg" style={{display: 'none'}}>
                   VS
                 </div>
                 <div>
