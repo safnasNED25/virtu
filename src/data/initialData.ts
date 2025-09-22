@@ -141,20 +141,8 @@ export const initialContactInfo: ContactInfo = {
 };
 
 export const initialVisitorData: VisitorData[] = [
-  { date: '2024-01-01', visitors: 45 },
-  { date: '2024-01-02', visitors: 52 },
-  { date: '2024-01-03', visitors: 38 },
-  { date: '2024-01-04', visitors: 67 },
-  { date: '2024-01-05', visitors: 73 },
-  { date: '2024-01-06', visitors: 89 },
-  { date: '2024-01-07', visitors: 95 },
-  { date: '2024-01-08', visitors: 82 },
-  { date: '2024-01-09', visitors: 76 },
-  { date: '2024-01-10', visitors: 91 },
-  { date: '2024-01-11', visitors: 103 },
-  { date: '2024-01-12', visitors: 118 },
-  { date: '2024-01-13', visitors: 125 },
-  { date: '2024-01-14', visitors: 134 }
+  { date: '2025-09-11', visitors: 1 },
+  { date: '2025-09-14', visitors: 4 }
 ];
 
 export const initialTestimonials: Testimonial[] = [
